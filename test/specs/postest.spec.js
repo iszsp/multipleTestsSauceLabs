@@ -2,14 +2,13 @@
 import LoginPage from '../pageobjects/login.js';
 import AfterLogin from '../pageobjects/afterLogin.js';
 
-
 describe('simple positive test made on my own', () => {
     it('login', async () => {
         await LoginPage.openWeb();
-        await LoginPage.login('standard_user','secret_sauce');
+        await LoginPage.goodUserPass('standard_user','secret_sauce');
     });
     it('after login check', async () => {
-        await AfterLogin.afterCheck();
+        AfterLogin.afterPosCheck();
     });
 
 });

@@ -7,9 +7,16 @@ class AfterLogin extends OpenPage {
     get products() {
        return $('.title')
     }
+    get wrongCred() {
+        return $('//*[contains(text(), "do not match")]')
+    }
 
-    afterCheck() {
-    expect(this.products).toExist();
+    afterPosCheck() {
+        expect(this.products).toExist();
+    }
+
+    afterNegCheck() {
+        expect(this.wrongCred).toExist();
     }
     
 }
