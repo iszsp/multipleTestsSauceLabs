@@ -1,8 +1,7 @@
 import { $ } from '@wdio/globals';
-import OpenPage from './page.js';
-import { expect } from '@wdio/globals';
 
-class AfterLogin extends OpenPage {
+
+class AfterLogin {
 
     get products() {
        return $('.title')
@@ -11,12 +10,12 @@ class AfterLogin extends OpenPage {
         return $('//*[contains(text(), "do not match")]')
     }
 
-    afterPosCheck() {
-        expect(this.products).toExist();
+    async afterPosCheck() {
+        await (this.products).waitForExist({ timeout: 250 });
     }
 
-    afterNegCheck() {
-        expect(this.wrongCred).toExist();
+    async afterNegCheck() {
+        await (this.wrongCred).waitForExist({ timeout: 250 });
     }
     
 }

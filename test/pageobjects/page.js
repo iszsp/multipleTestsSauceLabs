@@ -1,7 +1,7 @@
 import { browser } from '@wdio/globals';
-import Variables from '../specs/posNegTest.spec.js';
 
-export default class OpenPage extends Variables {
+
+export default class OpenPage {
 
     openWeb() {
     return browser.url('https://www.saucedemo.com/');
