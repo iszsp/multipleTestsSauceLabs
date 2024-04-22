@@ -9,6 +9,12 @@ class AfterLogin {
     get wrongCred() {
         return $('//*[contains(text(), "do not match")]')
     }
+    get userMiss() {
+        return $('//*[contains(text(), "Username is required")]')
+    }
+    get passMiss() {
+        return $('//*[contains(text(), "Password is required")]')
+    }
 
     async afterPosCheck() {
         await (this.products).waitForExist({ timeout: 250 });
@@ -18,6 +24,13 @@ class AfterLogin {
         await (this.wrongCred).waitForExist({ timeout: 250 });
     }
     
+    async missingUser() {
+        await (this.userMiss).waitForExist({ timeout: 250 });
+    }
+
+    async missingPass() {
+        await (this.passMiss).waitForExist({ timeout: 250 });
+    }
 }
 
 export default new AfterLogin();

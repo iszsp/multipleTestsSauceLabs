@@ -55,7 +55,12 @@ class LoginPage extends OpenPage {
             await browser.pause(500);
             await this.loginButton.click();
             await browser.pause(500);
-            await AfterLogin.afterNegCheck();
+            if(incorrectUsername[i] == '') {
+                await AfterLogin.missingUser();
+            }
+            else{
+                await AfterLogin.afterNegCheck();
+            }
         }
     }
 
@@ -69,7 +74,15 @@ class LoginPage extends OpenPage {
             await browser.pause(500);
             await this.loginButton.click();
             await browser.pause(500);
-            await AfterLogin.afterNegCheck();
+            if(incorrectPassword[i] == '') {
+                await AfterLogin.missingPass();
+            }
+            else if(incorrectPassword[i] == '' & incorrectUsername[i] == '') {
+                await AfterLogin.missingUser();
+            }
+            else{
+                await AfterLogin.afterNegCheck();
+            }
         }
     }
 
