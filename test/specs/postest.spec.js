@@ -1,19 +1,20 @@
 
 import LoginPage from '../pageobjects/login.js';
-import AfterLogin from '../pageobjects/afterLogin.js';
+import AfterLogin from '../pageobjects/afterLoginCheck.js';
 
-describe('simple positive test made on my own', () => {
-    it('login', async () => {
-        await LoginPage.goodUserPass(false, 'standard_user','secret_sauce');
+let posTest = () => {
+    describe('simple positive test made on my own', () => {
+        it('login', async () => {
+            await LoginPage.goodUserPass(false, 'standard_user','secret_sauce');
+        });
+        it('after login check', async () => {
+            AfterLogin.afterPosCheck();
+        });
     });
-    it('after login check', async () => {
-        AfterLogin.afterPosCheck();
-    });
+}
+posTest();
 
-});
-
-
-
+export { posTest };
 
 
 /*
