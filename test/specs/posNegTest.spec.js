@@ -2,14 +2,14 @@
 
 import LoginPage from '../pageobjects/login.js';
 
-let correctUsername = ['standard_user', 'locked_out_user', 'problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
-let incorrectUsername = ['null','undefined','',' ','STANDARD_USER','standarduser'];
+// const correctUsername = ['standard_user', 'locked_out_user', 'problem_user', 'performance_glitch_user', 'error_user', 'visual_user'];
+// const incorrectUsername = ['null','undefined','',' ','STANDARD_USER','standarduser'];
 
-let correctPassword = 'secret_sauce';
-let incorrectPassword = ['null','undefined','',' ','secretsauce','SECRET_SAUCE'];
+// const correctPassword = 'secret_sauce';
+// const incorrectPassword = ['null','undefined','',' ','secretsauce','SECRET_SAUCE'];
 
 
-export { correctUsername, incorrectUsername, correctPassword, incorrectPassword };
+// export { correctUsername, incorrectUsername, correctPassword, incorrectPassword };
 
 describe('simple positive and negative test made on my own', () => {
     it('happy test', async () => {
@@ -21,6 +21,4 @@ describe('simple positive and negative test made on my own', () => {
     it('sad badPass test', async () => {
         await LoginPage.badPass();
     });
-
-
 });
