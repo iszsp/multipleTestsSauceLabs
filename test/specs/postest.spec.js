@@ -1,4 +1,4 @@
-/*
+
 import LoginPage from '../pageobjects/login.js';
 import AfterLogin from '../pageobjects/afterLogin.js';
 
@@ -11,7 +11,7 @@ describe('simple positive test made on my own', () => {
     });
 
 });
-*/
+
 
 
 
