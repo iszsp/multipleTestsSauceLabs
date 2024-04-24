@@ -6,6 +6,7 @@ let posTest = () => {
     describe('simple positive test made on my own', () => {
         it('login', async () => {
             await LoginPage.goodUserPass(false, 'standard_user','secret_sauce');
+            await browser.pause(500);
         });
         it('after login check', async () => {
             AfterLogin.afterPosCheck();

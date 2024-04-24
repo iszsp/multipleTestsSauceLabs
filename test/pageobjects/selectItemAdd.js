@@ -1,7 +1,8 @@
 import { $$ } from '@wdio/globals';
 import { $ } from '@wdio/globals';
+import OpenPage from './page.js';
 
-class itemAdd {
+class ItemAdd extends OpenPage{
     get addAllBag() {
         return $$('//*[contains(text(),"Add to cart")]')
     }
@@ -11,23 +12,50 @@ class itemAdd {
     get viewCart() {
         return $('.shopping_cart_link')
     }
-    get verifyAddBag() {
-        return $('//*[contains(text(),"Sauce Labs Backpack")]')
-    }
-    get verifyAddBag() {
+    // get verifyAddBag() {
+    //     return $('//*[contains(text(),"Sauce Labs Backpack")]')
+    // }
+    get verifyAfterGood() {
         return $('//*[contains(text(),"Your Cart")]')
     }
-    async posAddAllToBag() {
-        this.addAllBag.click();
-        this.viewCart.click();
-        if(this.removeVerifyAllBag.length == this.addAllBag.length) {
-            this.
-        }
+    get verifyAfterBad() {
+        return $('//*[contains(text(),"fasdkljhgfhasdlfkj")]')
     }
     async posAddAllToBag() {
-        for(let i = 0; i < 50; i++) {
-        this.addAllBag.click();
-        this.
+        await this.addAllBag[0].waitForExist({ timeout: 250 });
+        await browser.pause(3000);
+        for(let i = 0; i < this.addAllBag.length; i++) {
+            this.addAllBag[i].click();
+            await browser.pause(3000);
+        }
+        this.viewCart.click();
+        await browser.pause(500);
+        if(this.removeVerifyAllBag.length == this.addAllBag.length) {
+            this.verifyAfterGood.waitForExist({ timeout: 250 });
+        }
+        else {
+            this.verifyAfterBad.waitForExist({ timeout: 250 });
+        }
+    }
+    async negAddAllToBag() {
+        await this.addAllBag[0].waitForExist({ timeout: 250 });
+        const initItems = await this.addAllBag.length
+        for(let i = 0; i < 100; i++) {
+            for(let i = 0; i < this.addAllBag.length; i++) {
+                this.addAllBag[i].click();
+                await browser.pause(100);
+                }
+            for(let i = 0; i < this.removeVerifyAllBag.length; i++) {
+                this.removeVerifyAllBag[i].click();
+                await browser.pause(100);
+                }
+        }
+        await browser.pause(500);
+        const curItems = await this.addAllBag.length
+        if(curItems != initItems) {
+            this.verifyAfterBad.waitForExist({ timeout: 250 });
         }
     }
 }
+
+export default new ItemAdd();
