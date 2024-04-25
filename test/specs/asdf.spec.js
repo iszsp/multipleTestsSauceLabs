@@ -17,7 +17,8 @@ describe('asdf', () => {
         await LoginPage.goodUserPass(false, 'standard_user','secret_sauce');
         await $('//*[contains(text(),"Sauce Labs Backpack")]').waitForExist();
         let addToCartButtons = await john();
-        await addToCartButtons[0].click();
-        await browser.pause(3000);
+        for(let i = 0; i < addToCartButtons.length; i++) {
+            await addToCartButtons[i].click();
+        }
     })
 });

@@ -3,58 +3,73 @@ import { $ } from '@wdio/globals';
 import OpenPage from './page.js';
 
 class ItemAdd extends OpenPage{
-    get addAllBag() {
-        return $$('//*[contains(text(),"Add to cart")]')
-    }
-    get removeVerifyAllBag() {
-        return $$('//*[contains(text(),"Remove")]')
-    }
     get viewCart() {
         return $('.shopping_cart_link')
     }
-    // get verifyAddBag() {
-    //     return $('//*[contains(text(),"Sauce Labs Backpack")]')
-    // }
     get verifyAfterGood() {
         return $('//*[contains(text(),"Your Cart")]')
     }
     get verifyAfterBad() {
         return $('//*[contains(text(),"fasdkljhgfhasdlfkj")]')
     }
+
+    addToCarty = async () => {
+        return await $$('//*[contains(text(),"Add to cart")]')
+    }
+
+    removeFromCarty = async () => {
+        return await $$('//*[contains(text(),"Remove")]')
+    }
+
+
+
     async posAddAllToBag() {
-        await this.addAllBag[0].waitForExist({ timeout: 250 });
-        await browser.pause(3000);
-        for(let i = 0; i < this.addAllBag.length; i++) {
-            this.addAllBag[i].click();
-            await browser.pause(3000);
+
+        let addToCartButtons = await this.addToCarty();
+        
+        await addToCartButtons[0].waitForExist({ timeout: 250 });
+
+        for(let i = 0; i < addToCartButtons.length; i++) {
+            addToCartButtons[i].click();
         }
         this.viewCart.click();
-        await browser.pause(500);
-        if(this.removeVerifyAllBag.length == this.addAllBag.length) {
+
+        let removeFromCartButtons = await this.removeFromCarty();
+
+        if(removeFromCartButtons.length == addToCartButtons.length) {
             this.verifyAfterGood.waitForExist({ timeout: 250 });
         }
         else {
             this.verifyAfterBad.waitForExist({ timeout: 250 });
         }
+
     }
     async negAddAllToBag() {
-        await this.addAllBag[0].waitForExist({ timeout: 250 });
-        const initItems = await this.addAllBag.length
-        for(let i = 0; i < 100; i++) {
-            for(let i = 0; i < this.addAllBag.length; i++) {
-                this.addAllBag[i].click();
-                await browser.pause(100);
+
+        let addToCartButtons = await this.addToCarty();
+
+        // await addToCartButtons[0].waitForExist({ timeout: 250 });
+
+        const initItems = await addToCartButtons.length
+        for(let i = 0; i < 10; i++) {
+
+            for(let i = 0; i < addToCartButtons.length; i++) {
+                await addToCartButtons[i].click();
+                await browser.pause(500);
                 }
-            for(let i = 0; i < this.removeVerifyAllBag.length; i++) {
-                this.removeVerifyAllBag[i].click();
-                await browser.pause(100);
+            
+            let removeFromCartButtons = await this.removeFromCarty();
+            
+            for(let i = 0; i < removeFromCartButtons.length; i++) {
+                await removeFromCartButtons[i].click();
+                await browser.pause(500);
                 }
         }
-        await browser.pause(500);
-        const curItems = await this.addAllBag.length
-        if(curItems != initItems) {
-            this.verifyAfterBad.waitForExist({ timeout: 250 });
+        addToCartButtons = this.addToCarty.length
+        if(addToCartButtons != initItems) {
+            await this.verifyAfterBad.waitForExist({ timeout: 250 });
         }
+
     }
 }
 
