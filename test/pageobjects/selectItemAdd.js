@@ -92,7 +92,7 @@ class ItemAdd extends OpenPage{
 
     }
 
-/* // NOTE! this is another laternate version of the
+/* // NOTE! this is an alternate version of the
 // runLength = false test
 else if (runLength == false) {
             await console.log('running longer test');
@@ -125,7 +125,7 @@ else if (runLength == false) {
 */
 
 
-    /* //   NOTE! this is an alt version that's kinda weird
+    /* //   NOTE! this is another alt version that's kinda weird
     // for some reason this doesnt work when the one above exists.
     async negAddAllToBag2() {
         const initAddBtn = (await this.addToCarty()).length;
