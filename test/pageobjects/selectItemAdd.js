@@ -1,16 +1,13 @@
 import { $$ } from '@wdio/globals';
 import { $ } from '@wdio/globals';
-import OpenPage from './page.js';
 
-class ItemAdd extends OpenPage{
+
+class ItemAdd {
     get viewCart() {
         return $('.shopping_cart_link')
     }
     get verifyAfterGood() {
         return $('//*[contains(text(),"Your Cart")]')
-    }
-    get verifyAfterBad() {
-        return $('//*[contains(text(),"something went wrong alsdkjfhalskdjhfaskldjfh")]')
     }
     get booleanNeeded() {
         return $('//*[contains(text(),"YOU DIDNT PUT A BOOLEAN IN THE PARAMETERS FOR THIS TEST OR YOUR BOOLEAN ISNT SUPPORTED")]')
@@ -27,7 +24,7 @@ class ItemAdd extends OpenPage{
 
 // NOTE! when running both these tests in one session,
 // the runLength = false needs to run first!
-    async AddAllToBag(runLength) {
+    async addAllToBag(runLength) {
         
         let removeFromCartButtons = await this.removeFromCarty();
         let addToCartButtons = (await this.addToCarty());
@@ -57,7 +54,7 @@ class ItemAdd extends OpenPage{
             }
             else {
                 await console.log("does" + removeFromCartButtons.length + " = " + addToCartButtons.length + "?");
-                await this.verifyAfterBad.waitForExist({ timeout: 250 });
+                throw new Error('the number of remove from cart buttons and add to cart buttons didnt line up');
             }
         }
         else if (runLength == false) {
@@ -79,11 +76,11 @@ class ItemAdd extends OpenPage{
                 const crtAddBtn = (await this.removeFromCarty()).length
                 if(crtAddBtn != 1) {
                     await console.log(crtAddBtn + 'this should be 1');
-                    await this.verifyAfterBad.waitForExist({ timeout: 250 });
+                    throw new Error('1 item should be added to the cart but it isnt');
                 }
             }
             else {
-                await this.verifyAfterBad.waitForExist({ timeout: 250 });
+                throw new Error("there's no add to cart buttons");
             }
         }
         else {

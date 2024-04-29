@@ -1,14 +1,14 @@
 
-
-import ItemAdd from'../pageobjects/selectItemAdd.js';
 import LoginPage from '../pageobjects/login.js';
+import ItemAdd from '../pageobjects/selectItemAdd.js';
+
 describe('adding items to cart tests', () => {
     it('negative adding item to cart', async () => {
         await LoginPage.goodUserPass(false, 'standard_user','secret_sauce');
-        await ItemAdd.AddAllToBag(false);
+        await ItemAdd.addAllToBag(false);
     });
     it('positive adding item to cart', async () => {
         await LoginPage.goodUserPass(false, 'standard_user','secret_sauce');
-        await ItemAdd.AddAllToBag(true);
+        await ItemAdd.addAllToBag(true);
     });
 });
