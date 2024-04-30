@@ -59,8 +59,8 @@ class Checkout{
     async noItemsBuy() {
         let rmvFromCart = (await ItemAdd.removeFromCarty());
         if(rmvFromCart.length != 0) {
-            for(let i = 0; i < this.rmvFromCart.length; i++) {
-                await this.rmvFromCart[i].click();
+            for(let i = 0; i < rmvFromCart.length; i++) {
+                await rmvFromCart[i].click();
                 // await browser.pause(1000);
             }
         }

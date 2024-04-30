@@ -10,7 +10,7 @@ import LoginPage from '../pageobjects/login.js';
 
 
 // export { correctUsername, incorrectUsername, correctPassword, incorrectPassword };
-
+let posNeg = () => {
 describe('simple positive and negative test made on my own', () => {
     it('happy test', async () => {
         await LoginPage.goodUserPass(true);
@@ -22,3 +22,6 @@ describe('simple positive and negative test made on my own', () => {
         await LoginPage.badPass();
     });
 });
+}
+posNeg();
+export { posNeg };

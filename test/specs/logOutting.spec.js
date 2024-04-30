@@ -2,7 +2,7 @@
 
 import Logoutting from '../pageobjects/logout.js';
 
-
+let loggingOut = () => {
 describe('imma do the checkout thing now', () => {
     it('happy logout', async () => {
         await Logoutting.happyLogout();
@@ -11,3 +11,6 @@ describe('imma do the checkout thing now', () => {
         await Logoutting.cartLinkLck();
     })
 })
+}
+loggingOut();
+export { loggingOut };

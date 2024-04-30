@@ -2,7 +2,7 @@
 import LoginPage from '../pageobjects/login.js';
 import AfterLogin from '../pageobjects/afterLoginCheck.js';
 
-let posTest = () => {
+let pos = () => {
     describe('simple positive test made on my own', () => {
         it('login', async () => {
             await LoginPage.goodUserPass(false, 'standard_user','secret_sauce');
@@ -13,9 +13,8 @@ let posTest = () => {
         });
     });
 }
-posTest();
-
-export { posTest };
+pos();
+export { pos };
 
 
 /*
