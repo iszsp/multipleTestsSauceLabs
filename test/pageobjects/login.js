@@ -1,7 +1,6 @@
 import { $ } from '@wdio/globals';
 import OpenPage from './page.js';
 import AfterLogin from './afterLoginCheck.js'
-// import { correctUsername, incorrectUsername, correctPassword, incorrectPassword } from '../specs/posNegTest.spec.js';
 
 
 class LoginPage extends OpenPage {
